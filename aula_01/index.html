@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="helloAngular">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../js/angular.min.js"></script>
+    <script>
+        angular.module("helloAngular", []);
+        angular.module("helloAngular").controller("myHelloCtrl", function($scope) {
+            // variável do controller
+            $scope.mensagem = "Hello AngularJS com - {{}}";
+            $scope.mensagem2 = "Outra mensagem com Angular JS - com ng-bind";
+        });
+    </script>
+    <title>Aula 01 - AngularJs Iniciando</title>
+</head>
+
+<body>
+    <section ng-controller="myHelloCtrl">
+        <h1>{{mensagem}}</h1>
+        <h3 ng-bind="mensagem2"></h3>
+    </section>
+</body>
+
+</html>
