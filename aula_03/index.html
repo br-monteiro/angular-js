@@ -5,9 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script src="js/angular.min.js"></script>
-    <script src="app/modules.js"></script>
-    <script src="app/app.js"></script>
     <title>Seja Bem - {{appName}} {{appVersion}}</title>
 </head>
 
@@ -16,7 +13,76 @@
         <h3 class="text-center" ng-controller="appCtrl">
             {{appName}} {{appVersion}}
         </h3>
+
+        <div class="row" ng-controller="clientesCtrl">
+            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <h4 class="modal-title" id="myLargeModalLabel">Adicionando cliente</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="nome">Nome</label>
+                                <input type="text" class="form-control" ng-model="cliente.nome" id="nome" placeholder="Nome">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="telefone">Telefone</label>
+                                <input type="text" class="form-control" ng-model="cliente.telefone" id="telefone" placeholder="Telefone">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">E-mail</label>
+                                <input type="email" class="form-control" ng-model="cliente.email" id="email" placeholder="E-mail">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="endereco">Enederoço</label>
+                                <input type="email" class="form-control" ng-model="cliente.endereco" id="endereco" placeholder="Endereço">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            <button class="btn btn-success" data-dismiss="modal" ng-click="add(cliente)">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Adicionar</button>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>Endereço</th>
+                        <th>E-mail</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="cliente in clientes">
+                        <td>{{cliente.nome}}</td>
+                        <td>{{cliente.telefone}}</td>
+                        <td>{{cliente.endereco}}</td>
+                        <td>{{cliente.email}}</td>
+                        <td>
+                            <button class="btn btn-success">Editar</button>
+                            <button class="btn btn-danger">Excluir</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
+<script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="app/modules.js"></script>
+<script src="app/app.js"></script>
 </html>
