@@ -56,4 +56,10 @@ app.controller("clientesCtrl", function($scope) {
     $scope.excluir = function() {
         $scope.clientes.splice($scope.index, 1);
     };
+
+    // ordenador de registro
+    $scope.orderBy = function(campo) {
+        $scope.campo = campo;
+        $scope.ordem = !$scope.ordem;
+    };
 });
