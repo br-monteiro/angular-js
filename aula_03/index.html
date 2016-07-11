@@ -15,14 +15,14 @@
         </h3>
 
         <div class="row" ng-controller="clientesCtrl">
-            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal fade modalForm" tabindex="-1" role="dialog" aria-labelledby="modalForm">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
-                            <h4 class="modal-title" id="myLargeModalLabel">Adicionando cliente</h4>
+                            <h4 class="modal-title" id="modalForm">Adicionando cliente</h4>
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
@@ -37,22 +37,23 @@
 
                             <div class="form-group">
                                 <label for="email">E-mail</label>
-                                <input type="email" class="form-control" ng-model="cliente.email" id="email" placeholder="E-mail">
+                                <input type="text" class="form-control" ng-model="cliente.email" id="email" placeholder="E-mail">
                             </div>
 
                             <div class="form-group">
                                 <label for="endereco">Enederoço</label>
-                                <input type="email" class="form-control" ng-model="cliente.endereco" id="endereco" placeholder="Endereço">
+                                <input type="text" class="form-control" ng-model="cliente.endereco" id="endereco" placeholder="Endereço">
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                            <button class="btn btn-success" data-dismiss="modal" ng-click="add(cliente)">Adicionar</button>
+                            <button class="btn btn-danger" data-dismiss="modal" ng-click="clearForm(cliente)">Cancelar</button>
+                            <button class="btn btn-success" data-dismiss="modal" ng-hide="editando" ng-click="add(cliente)">Adicionar</button>
+                            <button class="btn btn-primary" data-dismiss="modal" ng-show="editando" ng-click="salvar(cliente)">Salvar</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Adicionar</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modalForm">Adicionar</button>
 
             <table class="table table-striped">
                 <thead>
@@ -71,7 +72,7 @@
                         <td>{{cliente.endereco}}</td>
                         <td>{{cliente.email}}</td>
                         <td>
-                            <button class="btn btn-success">Editar</button>
+                            <button ng-click="editar(cliente)" class="btn btn-default" data-toggle="modal" data-target=".modalForm">Editar</button>
                             <button class="btn btn-danger">Excluir</button>
                         </td>
                     </tr>
