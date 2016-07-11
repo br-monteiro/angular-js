@@ -15,6 +15,7 @@
         </h3>
 
         <div class="row" ng-controller="clientesCtrl">
+
             <div class="modal fade modalConfirm" tabindex="-1" role="dialog" aria-labelledby="modalConfirm">
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content">
@@ -38,47 +39,73 @@
                     </div>
                 </div>
             </div>
+
             <div class="modal fade modalForm" tabindex="-1" role="dialog" aria-labelledby="modalForm">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
+
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                             <h4 class="modal-title" id="modalForm">Adicionando cliente</h4>
                         </div>
+
                         <div class="modal-body">
-                            <div class="form-group">
-                                <label for="nome">Nome</label>
-                                <input type="text" class="form-control" ng-model="cliente.nome" id="nome" placeholder="Nome">
-                            </div>
+                            <form name="formCliente">
+                                <div ng-class="{'has-error' : formCliente.nome.$invalid && formCliente.nome.$dirty, 'has-success' : formCliente.nome.$valid, 'form-group' : true}">
+                                    <label for="nome">Nome</label>
+                                    <input type="text"
+                                           name="nome"
+                                           class="form-control"
+                                           ng-model="cliente.nome"
+                                           ng-required="true"
+                                           placeholder="Nome">
+                                </div>
 
-                            <div class="form-group">
-                                <label for="telefone">Telefone</label>
-                                <input type="text" class="form-control" ng-model="cliente.telefone" id="telefone" placeholder="Telefone">
-                            </div>
+                                <div ng-class="{'has-error' : formCliente.telefone.$invalid && formCliente.nome.$dirty, 'has-success' : formCliente.telefone.$valid, 'form-group' : true}">
+                                    <label for="telefone">Telefone</label>
+                                    <input type="text"
+                                           name="telefone"
+                                           class="form-control"
+                                           ng-model="cliente.telefone"
+                                           ng-required="true" ng-pattern="/^\d{2} \d{4,5}-\d{4}$/"
+                                           id="telefone"
+                                           placeholder="Telefone: (##) ####-####">
+                                </div>
 
-                            <div class="form-group">
-                                <label for="email">E-mail</label>
-                                <input type="text" class="form-control" ng-model="cliente.email" id="email" placeholder="E-mail">
-                            </div>
+                                <div class="form-group">
+                                    <label for="email">E-mail</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           ng-model="cliente.email"
+                                           placeholder="E-mail">
+                                </div>
 
-                            <div class="form-group">
-                                <label for="endereco">Enederoço</label>
-                                <input type="text" class="form-control" ng-model="cliente.endereco" id="endereco" placeholder="Endereço">
-                            </div>
+                                <div ng-class="{'has-error' : formCliente.endereco.$invalid && formCliente.endereco.$dirty, 'has-success' : formCliente.nome.$valid, 'form-group' : true}">
+                                    <label for="endereco">Enederoço</label>
+                                    <input type="text"
+                                           name="endereco"
+                                           class="form-control"
+                                           ng-model="cliente.endereco"
+                                           ng-required="true"
+                                           placeholder="Endereço">
+                                </div>
+                            </form>
                         </div>
+
                         <div class="modal-footer">
                             <button class="btn btn-danger" data-dismiss="modal" ng-click="clearForm(cliente)">
                                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancelar
                             </button>
-                            <button class="btn btn-success" data-dismiss="modal" ng-hide="editando" ng-click="add(cliente)">
+                            <button class="btn btn-success" data-dismiss="modal" ng-hide="editando" ng-click="add(cliente)" ng-disabled="formCliente.$invalid">
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Adicionar
                             </button>
-                            <button class="btn btn-primary" data-dismiss="modal" ng-show="editando" ng-click="salvar(cliente)">
+                            <button class="btn btn-primary" data-dismiss="modal" ng-show="editando" ng-click="salvar(cliente)" ng-disabled="formCliente.$invalid">
                                 <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Salvar
                             </button>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -90,7 +117,11 @@
                 </div>
                 <div class="col-md-6">
                     <div class="pull-right">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modalForm">
+                        <button type="button"
+                                class="btn btn-primary"
+                                data-toggle="modal"
+                                data-target=".modalForm"
+                                ng-click="clearForm(clente)">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar
                         </button>
                     </div>
@@ -129,7 +160,20 @@
 </body>
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.mask.js"></script>
 <script src="js/angular.min.js"></script>
 <script src="app/modules.js"></script>
 <script src="app/app.js"></script>
+<script>
+    var SPMaskBehavior = function (val) {
+      return val.replace(/\D/g, '').length === 11 ? '00 00000-0000' : '00 0000-00009';
+    },
+    spOptions = {
+      onKeyPress: function(val, e, field, options) {
+          field.mask(SPMaskBehavior.apply({}, arguments), options);
+        }
+    };
+
+    $('#telefone').mask(SPMaskBehavior, spOptions);
+</script>
 </html>
