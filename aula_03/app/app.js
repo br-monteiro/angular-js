@@ -17,10 +17,26 @@ app.controller("clientesCtrl", function($scope) {
 
     // adiciona clientes
     $scope.add = function(cliente) {
+        $scope.editando = false;
         $scope.clientes.push(angular.copy(cliente));
-        cliente.nome = null;
-        cliente.telefone = null;
-        cliente.endereco = null;
-        cliente.email = null;
+        $scope.clearForm(cliente);
+    };
+
+    // editando um elemento
+    $scope.editar = function(cliente) {
+        $scope.editando = true;
+        $scope.cliente = cliente;
+    };
+
+    // limpa o formulário
+    $scope.clearForm = function(cliente) {
+        delete $scope.cliente;
+    };
+
+    // salva a edição de clientes
+    $scope.salvar = function(cliente) {
+        $scope.editando = false;
+        cliente = angular.copy($scope.cliente);
+        $scope.clearForm(cliente);
     };
 });
