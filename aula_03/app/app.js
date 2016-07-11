@@ -6,6 +6,7 @@ app.controller("appCtrl", function($scope) {
 });
 // dados dos clientes
 app.controller("clientesCtrl", function($scope) {
+    $scope.index = null;
     // objeto de clientes
     $scope.clientes = [
         {nome: "Bruno Monteiro", telefone: "1234-5678", endereco: "Rua teste1", email: "teste@teste.com"},
@@ -38,5 +39,16 @@ app.controller("clientesCtrl", function($scope) {
         $scope.editando = false;
         cliente = angular.copy($scope.cliente);
         $scope.clearForm(cliente);
+    };
+
+    // solicita ao usuário a confirmação de exclusão
+    $scope.confirmExcluir = function(cliente) {
+        $scope.index = $scope.clientes.indexOf(clientes);
+        $scope.nomeRegistro = cliente.nome;
+    };
+
+    // exclui registros
+    $scope.excluir = function() {
+        $scope.clientes.splice($scope.index, 1);
     };
 });
