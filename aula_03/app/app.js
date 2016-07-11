@@ -44,7 +44,7 @@ app.controller("clientesCtrl", function($scope) {
     // solicita ao usuário a confirmação de exclusão
     $scope.confirmExcluir = function(cliente) {
         $scope.nomeRegistro = cliente.nome;
-        $scope.index = $scope.clientes.indexOf(clientes);
+        $scope.index = $scope.clientes.indexOf(cliente);
     };
 
     // exclui registros
