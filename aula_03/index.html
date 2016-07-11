@@ -131,15 +131,31 @@
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>Nome</th>
-                        <th>Telefone</th>
-                        <th>Endereço</th>
-                        <th>E-mail</th>
+                        <th ng-click="orderBy('nome')" style="cursor: pointer;">
+                            Nome
+                            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true" ng-hide="ordem && campo == 'nome'"></span>
+                            <span class="glyphicon glyphicon-chevron-up" aria-hidden="true" ng-show="ordem && campo == 'nome'"></span>
+                        </th>
+                        <th ng-click="orderBy('telefone')" style="cursor: pointer;">
+                            Telefone
+                            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true" ng-hide="ordem && campo == 'telefone'"></span>
+                            <span class="glyphicon glyphicon-chevron-up" aria-hidden="true" ng-show="ordem && campo == 'telefone'"></span>
+                        </th>
+                        <th ng-click="orderBy('endereco')" style="cursor: pointer;">
+                            Endereço
+                            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true" ng-hide="ordem && campo == 'endereco'"></span>
+                            <span class="glyphicon glyphicon-chevron-up" aria-hidden="true" ng-show="ordem && campo == 'endereco'"></span>
+                        </th>
+                        <th ng-click="orderBy('email')" style="cursor: pointer;">
+                            E-mail
+                            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true" ng-hide="ordem && campo == 'email'"></span>
+                            <span class="glyphicon glyphicon-chevron-up" aria-hidden="true" ng-show="ordem && campo == 'email'"></span>
+                        </th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="cliente in clientes | filter:filtro">
+                    <tr ng-repeat="cliente in clientes | filter:filtro | orderBy:campo:ordem">
                         <td>{{cliente.nome}}</td>
                         <td>{{cliente.telefone}}</td>
                         <td>{{cliente.endereco}}</td>
