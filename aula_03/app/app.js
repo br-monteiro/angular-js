@@ -9,18 +9,17 @@ app.controller("clientesCtrl", function($scope) {
     $scope.index = null;
     // objeto de clientes
     $scope.clientes = [
-        {nome: "Bruno Monteiro", telefone: "1234-5678", endereco: "Rua teste1", email: "teste@teste.com"},
-        {nome: "Paula Matias", telefone: "1234-5678", endereco: "Rua teste1", email: "teste@teste.com"},
-        {nome: "Heitor Monteiro", telefone: "1234-5678", endereco: "Rua teste1", email: "teste@teste.com"},
-        {nome: "Francisco Monteiro", telefone: "1234-5678", endereco: "Rua teste1", email: "teste@teste.com"},
-        {nome: "Helena Monteiro", telefone: "1234-5678", endereco: "Rua teste1", email: "teste@teste.com"}
+        {nome: "Bruno Monteiro", telefone: "91 1234-5678", endereco: "Rua teste1", email: "teste@teste.com"},
+        {nome: "Paula Matias", telefone: "91 1234-5678", endereco: "Rua teste1", email: "teste@teste.com"},
+        {nome: "Heitor Monteiro", telefone: "91 1234-5678", endereco: "Rua teste1", email: "teste@teste.com"},
+        {nome: "Francisco Monteiro", telefone: "91 1234-5678", endereco: "Rua teste1", email: "teste@teste.com"},
+        {nome: "Helena Monteiro", telefone: "91 1234-5678", endereco: "Rua teste1", email: "teste@teste.com"}
     ];
 
     // adiciona clientes
     $scope.add = function(cliente) {
         $scope.editando = false;
         $scope.clientes.push(angular.copy(cliente));
-        $scope.formCliente.$setPristine();
         $scope.clearForm(cliente);
         // fecha o modal
         $('.modalForm').modal().modal('toggle');
@@ -34,6 +33,7 @@ app.controller("clientesCtrl", function($scope) {
 
     // limpa o formulário
     $scope.clearForm = function(cliente) {
+        $scope.formCliente.$setPristine();
         delete $scope.cliente;
     };
 
@@ -41,7 +41,6 @@ app.controller("clientesCtrl", function($scope) {
     $scope.salvar = function(cliente) {
         $scope.editando = false;
         cliente = angular.copy($scope.cliente);
-        $scope.formCliente.$setPristine();
         $scope.clearForm(cliente);
         // fecha o modal
         $('.modalForm').modal().modal('toggle');
