@@ -20,7 +20,10 @@ app.controller("clientesCtrl", function($scope) {
     $scope.add = function(cliente) {
         $scope.editando = false;
         $scope.clientes.push(angular.copy(cliente));
+        $scope.formCliente.$setPristine();
         $scope.clearForm(cliente);
+        // fecha o modal
+        $('.modalForm').modal().modal('toggle');
     };
 
     // editando um elemento
@@ -38,7 +41,10 @@ app.controller("clientesCtrl", function($scope) {
     $scope.salvar = function(cliente) {
         $scope.editando = false;
         cliente = angular.copy($scope.cliente);
+        $scope.formCliente.$setPristine();
         $scope.clearForm(cliente);
+        // fecha o modal
+        $('.modalForm').modal().modal('toggle');
     };
 
     // solicita ao usuário a confirmação de exclusão
