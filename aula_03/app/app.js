@@ -5,16 +5,19 @@ app.controller("appCtrl", function($scope) {
     $scope.appVersion = "0.0.1";
 });
 // dados dos clientes
-app.controller("clientesCtrl", function($scope) {
+app.controller("clientesCtrl", function($scope, $http) {
     $scope.index = null;
     // objeto de clientes
-    $scope.clientes = [
-        {nome: "Bruno Monteiro", telefone: "91 1234-5678", endereco: "Rua teste1", email: "teste@teste.com"},
-        {nome: "Paula Matias", telefone: "91 1234-5678", endereco: "Rua teste1", email: "teste@teste.com"},
-        {nome: "Heitor Monteiro", telefone: "91 1234-5678", endereco: "Rua teste1", email: "teste@teste.com"},
-        {nome: "Francisco Monteiro", telefone: "91 1234-5678", endereco: "Rua teste1", email: "teste@teste.com"},
-        {nome: "Helena Monteiro", telefone: "91 1234-5678", endereco: "Rua teste1", email: "teste@teste.com"}
-    ];
+    $scope.clientes = [];
+
+    var findAll = function() {
+        $http.get('http://localhost:8000').success(function(data, status) {
+            //console.log(data);
+            //console.log(status);
+            $scope.clientes = data;
+        });
+    };
+    findAll();
 
     // adiciona clientes
     $scope.add = function(cliente) {
