@@ -1,0 +1,31 @@
+{
+    "name": "mypizza",
+    "homepage": "https://github.com/br-monteiro/angular-js",
+    "authors": [
+        "Bruno Monteiro - <bruno.monteirodg@gmail.com>"
+    ],
+    "description": "Porjeto do curso de AngularJS da School of Net",
+    "main": "pulic/index.php",
+    "keywords": [
+        "controle",
+        "clientes",
+        "telefones",
+        "registros",
+        "pizzaria"
+    ],
+    "license": "MIT",
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "angular": "~1.5.7",
+        "bootstrap": "~3.3.6",
+        "font-awesome": "~4.6.3",
+        "jquery-mask-plugin": "~1.14.0"
+  }
+}
