@@ -1,0 +1,4 @@
+projeto_final/MyPizza/vendor
+projeto_final/MyPizza/public/vendor
+*.env
+/projeto_final/MyPizza/nbproject/private/
